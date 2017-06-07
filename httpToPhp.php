@@ -89,8 +89,8 @@ if(isset($_POST['submit'])){
         $php_functions .= "\t".'return "";'."\n";
         $php_functions .= '}'."\n";
         
-        $php_code = '<?php '."\n";
-        $php_code = 'require("lib/SimpleCurl.php")'."\n";
+        $php_code = '<?php '."\n\n";
+        $php_code .= 'require("lib/SimpleCurl.php")'."\n";
         $php_code .= '$debugMode = true;'."\n";
         $php_code .= "\n";
         
@@ -157,7 +157,13 @@ if(isset($_POST['submit'])){
         }
         
         $php_code .= $php_functions .= $php_bot_script;
-        file_put_contents('Bot.php', $php_code);
+        //file_put_contents('Bot.php', $php_code);
+
+        header('content-type: text/plain');
+        header('Content-Disposition: attachment; filename="Bot.php"');
+        echo $php_code;
+        exit;
+
         $message = 'Der Bot wurde erstellt. Es wurden '.$crawled_pakets.' Pakete bearbeitet und '.$skipped_pakets.' uebersprungen';
     }
 }
