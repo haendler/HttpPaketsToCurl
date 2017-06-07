@@ -111,7 +111,17 @@ if(isset($_POST['submit'])){
             if(!isset($aPaketLines[3])){
                 continue;
             }
-            if(strpos($aPaketLines[3], '.png') !== false || strpos($aPaketLines[3], '.jpg') !== false || strpos($aPaketLines[3], '.css') !== false || strpos($aPaketLines[3], '.js') !== false || strpos($aPaketLines[3], '.xml') !== false || strpos($aPaketLines[3], '.gif') !== false || strpos($aPaketLines[3], '.swf') !== false || strpos($aPaketLines[3], '.ico') !== false || strpos($aPaketLines[3], 'safebrowsing.')){
+            if(
+                    strpos($aPaketLines[3], '.png') !== false ||
+                    strpos($aPaketLines[3], '.jpg') !== false ||
+                    strpos($aPaketLines[3], '.css') !== false ||
+                    strpos($aPaketLines[3], '.js') !== false ||
+                    strpos($aPaketLines[3], '.xml') !== false ||
+                    strpos($aPaketLines[3], '.gif') !== false ||
+                    strpos($aPaketLines[3], '.swf') !== false ||
+                    strpos($aPaketLines[3], '.ico') !== false ||
+                    strpos($aPaketLines[3], 'safebrowsing.'
+            )){
                 $skipped_pakets++;
                 continue;
             }
