@@ -111,6 +111,7 @@ if(isset($_POST['submit'])){
             if(!isset($aPaketLines[3])){
                 continue;
             }
+
             if(
                     strpos($aPaketLines[3], '.png') !== false ||
                     strpos($aPaketLines[3], '.jpg') !== false ||
