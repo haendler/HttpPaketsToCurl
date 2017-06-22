@@ -61,17 +61,26 @@ function getPostData($paket){
             break;
         }
     }
-    
+
     if(!$contentLength){
         return '';
     }
-    
-    foreach($paket as $paketLine){
+
+    $sPostData = '';
+    foreach($paket as $index => $paketLine){
+        //Nach der Angabe der Content-Length folgt in der nächsten Zeile immer die POSt-Daten die übergeben werden
+        //deshalb erhöhen wir den Index um 1 und setzen die POST-Daten
+        if(strpos($paketLine, 'Content-Length: ') !== false){
+            $sPostData = $paket[$index+1];
+            break;
+        }
+
         if(strlen($paketLine)-1 == $contentLength){
-            return trim($paketLine);
+            $sPostData = trim($paketLine);
         }
     }
-    return '';
+
+    return $sPostData;
 }
 if(isset($_POST['submit'])){
     if(isset($_FILES['file']['tmp_name'])){
@@ -90,7 +99,7 @@ if(isset($_POST['submit'])){
         $phpFunctions .= '}'."\n";
         
         $phpCode = '<?php '."\n\n";
-        $phpCode .= 'require("lib/SimpleCurl.php")'."\n";
+        $phpCode .= 'require("lib/SimpleCurl.php");'."\n";
         $phpCode .= '$debugMode = true;'."\n";
         $phpCode .= "\n";
         
